@@ -1,5 +1,6 @@
 tasks = []
 categories = []
+dates = []
 
 def show_menu():
     print("\n=== เมนูหลัก ===")
@@ -10,24 +11,26 @@ def show_menu():
     print("5. ออกจากโปรแกรม")
 
 def add_task():
-    global tasks, categories
+    global tasks, categories, dates
     name = input("กรอกชื่องาน: ")
     category = input("กรอกประเภทงาน (เช่น พืช, สัตว์): ")
+    date = input("กรอกวันที่ (เช่น 24/07/2568): ")
     tasks.append(name)
     categories.append(category)
+    dates.append(date)
     print("เพิ่มงานเรียบร้อยแล้ว!")
 
 def show_all_tasks():
-    global tasks, categories
+    global tasks, categories, dates
     if len(tasks) == 0:
         print("ยังไม่มีงานในระบบ")
     else:
         print("\nรายการงานทั้งหมด:")
         for i in range(len(tasks)):
-            print(f"{i+1}. {tasks[i]} (ประเภท: {categories[i]})")
+            print(f"{i+1}. {tasks[i]} (ประเภท: {categories[i]}, วันที่: {dates[i]})")
 
 def delete_task():
-    global tasks, categories
+    global tasks, categories, dates
     show_all_tasks()
     if len(tasks) == 0:
         return
@@ -37,11 +40,11 @@ def delete_task():
             print(f"ลบงาน: {tasks[number-1]}")
             del tasks[number-1]
             del categories[number-1]
+            del dates[number-1]
         else:
             print("เลขลำดับไม่ถูกต้อง")
     except:
         print("กรุณากรอกตัวเลขเท่านั้น")
-
 def summarize_tasks():
     global tasks, categories
     if len(tasks) == 0:
@@ -54,7 +57,6 @@ def summarize_tasks():
                 summary[cat] += 1
             else:
                 summary[cat] = 1
-
         for cat in summary:
             print(f"- {cat}: {summary[cat]} งาน")
 
